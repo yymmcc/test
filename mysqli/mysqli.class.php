@@ -1,5 +1,5 @@
 <?php
-class mysqli{
+class dbmysqlidb{
 	static private $_instance;
 	
 	private $con;
@@ -85,6 +85,25 @@ class mysqli{
 		$fieldsStr = '`' . implode('`,`', $dataFields) . '`';
 		$valuesStr = "'" . implode("','", $dataValues) . "'";
 		$sql = "update `$tablename` set ($fieldsStr) values ($valuesStr) where ";
+	}
+	
+	public function addData($tablename = '', $data = array()){
+		$dataFields = array();
+		$dataValues = array();
+		foreach($data as $k=>$v){
+			$dataFields[] = $k;
+			$dataValues[] = $v;
+		}
+		$fieldsStr = '`' . implode('`,`', $dataFields) . '`';
+		$valuesStr = "'" . implode("','", $dataValues) . "'";
+		
+		$sql = "INSERT INTO `$tablename` ($fieldsStr) VALUES ($valuesStr)";
+		$result = $this->query($sql);
+		if($result){
+			return mysqli_insert_id($this->con);
+		}else{
+			return 0;
+		}
 	}
 	
 }
