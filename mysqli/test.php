@@ -6,5 +6,4 @@ $data = array(
 		'addtime' => time()
 );
 $id = $db->query($link, $query);
-//111111111111111111111
 var_dump($id);
