@@ -5,5 +5,6 @@ $data = array(
 		'name' => uniqid(),
 		'addtime' => time()
 );
-$id = $db->query($link, $query)
+$id = $db->query($link, $query);
+//111111111111111111111
 var_dump($id);
